@@ -10,8 +10,9 @@ end
 
 # Receive and save the uploaded file -- Handle POST-requests
 post '/upload' do
-	File.open('uploads/' + params['photofile'][:filename], "w") do |f|
-		f.write(params['photofile'][:tempfile].read)
-	end
-	return "Successful upload."
+  photo = Photo.new
+  photo.image = params[:photofile]
+  photo.save
+  puts photo.inspect
+  "Success! <img src='#{photo.image}'>"
 end
