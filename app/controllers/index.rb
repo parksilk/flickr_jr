@@ -12,14 +12,11 @@ end
 post '/upload' do
   photo = Photo.new
   photo.image = params[:photofile]
-  photo.save
 
   image = MiniMagick::Image.open(photo.image.current_path)
   image.resize "100x100"
-  thumb_url = photo.image.current_path.split(".").first + "_thumb." + photo.image.current_path.split(".").last
-  image.write thumb_url
-
-  Photo.create(:image => image)
+  photo.thumbnail = image
+  photo.save
 
   redirect '/'
 end
