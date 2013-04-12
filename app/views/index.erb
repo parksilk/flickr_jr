@@ -6,3 +6,8 @@
 </form>
 
 <!-- Display all photos below -->
+
+
+<% @photos.each do |photo| %>
+  <img src=<%= photo.image %>>
+<% end %>
