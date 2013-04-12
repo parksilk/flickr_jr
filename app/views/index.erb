@@ -9,6 +9,5 @@
 
 
 <% @photos.each do |photo| %>
-  <img src=<%= photo.image %>>
-  <img src=<%= photo.thumbnail %>>
+  <a href='/photo/<%=photo.id%>'><img src=<%= photo.thumbnail %>></a>
 <% end %>

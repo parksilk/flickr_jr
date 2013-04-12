@@ -12,11 +12,14 @@ end
 post '/upload' do
   photo = Photo.new
   photo.image = params[:photofile]
-
-  image = MiniMagick::Image.open(photo.image.current_path)
-  image.resize "100x100"
-  photo.thumbnail = image
+  thumbify(photo)
   photo.save
 
   redirect '/'
+end
+
+
+get '/photo/:id' do
+  @photo = Photo.find(params[:id])
+  erb :single_photo
 end
